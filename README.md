@@ -20,7 +20,7 @@ A lightweight, self-hosted page builder. Create and publish multi-page websites 
 ## Project Structure
 
 ```
-makerthing/
+Makerthing/
 ├── app.py                  # Flask app, models, and routes
 ├── requirements.txt
 ├── .env                    # Local secrets (not committed)
@@ -52,8 +52,8 @@ makerthing/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/CYoung5885/makerthing.git
-cd makerthing
+git clone https://github.com/CYoung5885/Makerthing.git
+cd Makerthing
 ```
 
 ### 2. Create and activate a virtual environment
