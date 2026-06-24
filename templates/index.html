@@ -13,24 +13,20 @@
 <!-- Top bar -->
 <header id="topbar" role="banner">
   <span class="logo" aria-label="MakerThing">MakerThing</span>
-
   <div class="page-name">
-    <label for="page-title-input" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Page title</label>
+    <label for="page-title-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Page title</label>
     <input type="text" id="page-title-input" value="Home" aria-label="Page title" autocomplete="off" />
   </div>
-
   <div class="topbar-actions">
-    <span class="status-badge" id="save-status" aria-live="polite">
+    <span class="status-badge" aria-live="polite">
       <span class="status-dot saved" id="save-dot"></span>
       <span id="save-label">Saved</span>
     </span>
-
-    <button class="ghost" onclick="previewPage()" aria-label="Preview page in new tab">
+    <button class="ghost" onclick="previewPage()" aria-label="Preview page">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
       Preview
     </button>
-
-    <button class="primary" onclick="savePage()" id="publish-btn">
+    <button class="primary" onclick="savePage()">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>
       Publish
     </button>
@@ -41,66 +37,60 @@
 <div id="editor-layout" role="main">
 
   <!-- Left sidebar -->
-  <nav id="sidebar" aria-label="Block palette and pages">
+  <nav id="sidebar" aria-label="Blocks, elements and pages">
+
+    <!-- Add block -->
     <div class="sidebar-section">
       <p class="sidebar-section-label">Add block</p>
       <div class="block-grid" role="list">
-
-        <button class="block-btn" role="listitem" onclick="addBlock('hero')" aria-label="Add hero block">
+        <button class="block-btn" onclick="addBlock('hero')" aria-label="Add hero block">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="7" y1="9" x2="17" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/></svg>
           Hero
         </button>
-
-        <button class="block-btn" role="listitem" onclick="addBlock('heading')" aria-label="Add heading block">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="14" y2="12"/><line x1="4" y1="17" x2="11" y2="17"/></svg>
-          Heading
+        <button class="block-btn" onclick="addBlock('section')" aria-label="Add section block">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+          Section
         </button>
-
-        <button class="block-btn" role="listitem" onclick="addBlock('text')" aria-label="Add text block">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="10" x2="20" y2="10"/><line x1="4" y1="14" x2="20" y2="14"/><line x1="4" y1="18" x2="15" y2="18"/></svg>
-          Text
-        </button>
-
-        <button class="block-btn" role="listitem" onclick="addBlock('image')" aria-label="Add image block">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          Image
-        </button>
-
-        <button class="block-btn" role="listitem" onclick="addBlock('columns')" aria-label="Add two-column block">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="18" rx="1"/><rect x="13" y="3" width="8" height="18" rx="1"/></svg>
-          Columns
-        </button>
-
-        <button class="block-btn" role="listitem" onclick="addBlock('button')" aria-label="Add button block">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="10" rx="5"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
-          Button
-        </button>
-
-        <button class="block-btn" role="listitem" onclick="addBlock('divider')" aria-label="Add divider block">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="4" y1="12" x2="20" y2="12"/><circle cx="12" cy="12" r="2"/></svg>
-          Divider
-        </button>
-
       </div>
     </div>
 
-    <div class="sidebar-section" style="display:flex;justify-content:space-between;align-items:center;">
-      <p class="sidebar-section-label" style="margin-bottom:0">Pages</p>
-      <button class="icon-btn ghost" onclick="addPage()" aria-label="Add new page" style="width:24px;height:24px;padding:0;font-size:16px;border:none;color:var(--text-muted)">+</button>
+    <!-- Add element (to selected block) -->
+    <div class="sidebar-section">
+      <p class="sidebar-section-label">Add element</p>
+      <div class="el-grid" role="list">
+        <button class="el-btn" onclick="addElementToBlock('text')" aria-label="Add text element">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="10" x2="20" y2="10"/><line x1="4" y1="14" x2="20" y2="14"/><line x1="4" y1="18" x2="15" y2="18"/></svg>
+          Text
+        </button>
+        <button class="el-btn" onclick="addElementToBlock('heading')" aria-label="Add heading element">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="14" y2="12"/></svg>
+          Heading
+        </button>
+        <button class="el-btn" onclick="addElementToBlock('image')" aria-label="Add image element">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          Image
+        </button>
+        <button class="el-btn" onclick="addElementToBlock('button')" aria-label="Add button element">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="10" rx="5"/></svg>
+          Button
+        </button>
+        <button class="el-btn" onclick="addElementToBlock('divider')" aria-label="Add divider element">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="4" y1="12" x2="20" y2="12"/></svg>
+          Divider
+        </button>
+      </div>
     </div>
 
+    <!-- Pages -->
+    <div class="sidebar-section" style="display:flex;justify-content:space-between;align-items:center;">
+      <p class="sidebar-section-label" style="margin-bottom:0">Pages</p>
+      <button class="icon-btn ghost" onclick="addPage()" aria-label="Add new page"
+              style="width:24px;height:24px;padding:0;font-size:16px;border:none;color:var(--text-muted)">+</button>
+    </div>
     <div id="pages-list" role="list" aria-label="Pages">
-      <button class="page-item active" role="listitem" aria-current="page">
+      <button class="page-item active" role="listitem" aria-current="page" data-page-id="">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         Home
-      </button>
-      <button class="page-item" role="listitem" aria-current="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        About
-      </button>
-      <button class="page-item" role="listitem" aria-current="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        Contact
       </button>
     </div>
   </nav>
@@ -108,85 +98,117 @@
   <!-- Canvas -->
   <section id="canvas-area" aria-label="Page canvas" tabindex="-1">
     <div id="page-canvas" role="list" aria-label="Page blocks" aria-dropeffect="move">
-
-      <!-- Initial drop zone -->
       <div class="drop-zone" role="none"></div>
-
-      <!-- Hero block (pre-rendered) -->
-      <article class="page-block" role="listitem" aria-label="Hero block" data-block-type="hero" tabindex="0" draggable="true" onclick="selectBlock(this)" onkeydown="blockKeydown(event,this)">
-        <div class="drag-handle" aria-hidden="true" title="Drag to reorder (or use Alt + Arrow keys)">
-          <svg width="10" height="16" viewBox="0 0 10 16" fill="currentColor" aria-hidden="true">
-            <circle cx="3" cy="2"  r="1.5"/>
-            <circle cx="7" cy="2"  r="1.5"/>
-            <circle cx="3" cy="8"  r="1.5"/>
-            <circle cx="7" cy="8"  r="1.5"/>
-            <circle cx="3" cy="14" r="1.5"/>
-            <circle cx="7" cy="14" r="1.5"/>
-          </svg>
-        </div>
-        <div class="block-toolbar" role="toolbar" aria-label="Hero block actions">
-          <button class="icon-btn" aria-label="Move hero block up" title="Move up (Alt+↑)" onclick="event.stopPropagation(); moveBlock(this.closest('.page-block'),'up')">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
-          </button>
-          <button class="icon-btn" aria-label="Move hero block down" title="Move down (Alt+↓)" onclick="event.stopPropagation(); moveBlock(this.closest('.page-block'),'down')">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <button class="icon-btn" aria-label="Duplicate hero block" title="Duplicate" onclick="event.stopPropagation(); duplicateBlock(this.closest('.page-block'))">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          </button>
-          <button class="icon-btn danger" aria-label="Delete hero block" title="Delete (Ctrl+Delete)" onclick="event.stopPropagation(); deleteBlock(this.closest('.page-block'))">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-          </button>
-        </div>
-        <div class="block-inner block-hero">
-          <h1 contenteditable="true" aria-label="Hero headline" spellcheck="true">Your headline here</h1>
-          <p contenteditable="true" aria-label="Hero subtext" spellcheck="true">Describe what your site is about in a sentence or two. Keep it clear and direct.</p>
-          <div class="hero-cta">
-            <button class="primary" contenteditable="true" aria-label="Primary call to action">Get started</button>
-            <button class="ghost" contenteditable="true" aria-label="Secondary call to action">Learn more</button>
-          </div>
-        </div>
-      </article>
-
-      <div class="drop-zone" role="none"></div>
-
     </div>
   </section>
 
   <!-- Right inspector -->
-  <aside id="inspector" aria-label="Block settings">
-    <div class="inspector-header">Block settings</div>
+  <aside id="inspector" aria-label="Block and element settings">
+    <div class="inspector-header">
+      <span id="insp-title">Settings</span>
+    </div>
 
-    <div id="inspector-content">
+    <!-- Empty state -->
+    <div id="insp-empty" class="inspector-empty">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="9" x2="15" y2="9"/></svg>
+      <p>Select a block or element<br>to edit its settings</p>
+    </div>
+
+    <!-- Block inspector -->
+    <div id="insp-block-panel" style="display:none">
       <div class="inspector-group">
-        <label for="block-align">Text align</label>
-        <select id="block-align" aria-label="Text alignment">
-          <option value="left">Left</option>
-          <option value="center" selected>Center</option>
-          <option value="right">Right</option>
-        </select>
-
         <label>Background</label>
-        <div class="color-row" role="group" aria-label="Background color">
-          <button class="color-swatch active" style="background:#ffffff;border-color:var(--accent);" onclick="setSwatch(this,'#ffffff')" aria-label="White background" aria-pressed="true"></button>
-          <button class="color-swatch" style="background:#eaf3de;" onclick="setSwatch(this,'#eaf3de')" aria-label="Light green background" aria-pressed="false"></button>
-          <button class="color-swatch" style="background:#e6f1fb;" onclick="setSwatch(this,'#e6f1fb')" aria-label="Light blue background" aria-pressed="false"></button>
-          <button class="color-swatch" style="background:#faeeda;" onclick="setSwatch(this,'#faeeda')" aria-label="Light amber background" aria-pressed="false"></button>
-          <button class="color-swatch" style="background:#f1efe8;" onclick="setSwatch(this,'#f1efe8')" aria-label="Light gray background" aria-pressed="false"></button>
+        <div class="color-row" role="group" aria-label="Background colour">
+          <button class="color-swatch active" data-color="#ffffff" style="background:#ffffff;" onclick="setSwatch(this,'#ffffff')" aria-label="White" aria-pressed="true"></button>
+          <button class="color-swatch" data-color="#eaf3de" style="background:#eaf3de;" onclick="setSwatch(this,'#eaf3de')" aria-label="Light green" aria-pressed="false"></button>
+          <button class="color-swatch" data-color="#e6f1fb" style="background:#e6f1fb;" onclick="setSwatch(this,'#e6f1fb')" aria-label="Light blue" aria-pressed="false"></button>
+          <button class="color-swatch" data-color="#faeeda" style="background:#faeeda;" onclick="setSwatch(this,'#faeeda')" aria-label="Light amber" aria-pressed="false"></button>
+          <button class="color-swatch" data-color="#f1efe8" style="background:#f1efe8;" onclick="setSwatch(this,'#f1efe8')" aria-label="Light grey" aria-pressed="false"></button>
         </div>
 
-        <label for="block-padding">Padding</label>
-        <select id="block-padding" aria-label="Block padding">
-          <option value="16px">Compact</option>
-          <option value="32px" selected>Normal</option>
-          <option value="56px">Spacious</option>
+        <label for="insp-block-padding">Block padding</label>
+        <select id="insp-block-padding" aria-label="Block padding">
+          <option value="16px">Compact (16px)</option>
+          <option value="24px" selected>Normal (24px)</option>
+          <option value="40px">Spacious (40px)</option>
         </select>
+
+        <label for="insp-block-id">Block ID</label>
+        <input type="text" id="insp-block-id" placeholder="e.g. hero-section" aria-label="Block CSS anchor ID" />
+
+        <div class="snap-row">
+          <label for="insp-snap-toggle" style="text-transform:none;font-size:12px;margin-bottom:0;">Snap to 8px grid</label>
+          <input type="checkbox" id="insp-snap-toggle" aria-label="Enable snap to grid" />
+        </div>
       </div>
+    </div>
+
+    <!-- Element inspector -->
+    <div id="insp-el-panel" style="display:none">
 
       <div class="inspector-group">
-        <label for="block-id-input">Block ID</label>
-        <input type="text" id="block-id-input" placeholder="e.g. hero-section" aria-label="Block CSS ID for anchors" />
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+          <span style="font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;" id="insp-el-type">Element</span>
+          <button class="delete-el-btn" style="width:auto;margin-top:0;padding:3px 8px;font-size:11px;" onclick="deleteSelectedElement()">Delete</button>
+        </div>
       </div>
+
+      <!-- Typography -->
+      <div class="inspector-group">
+        <label>Typography</label>
+
+        <label class="four-grid-label" style="text-align:left;font-size:11px;color:var(--text-muted);">Size (px)</label>
+        <input type="number" id="insp-font-size" min="8" max="120" value="15" aria-label="Font size in pixels" />
+
+        <label class="four-grid-label" style="text-align:left;font-size:11px;color:var(--text-muted);">Weight</label>
+        <select id="insp-font-weight" aria-label="Font weight">
+          <option value="300">Light (300)</option>
+          <option value="400" selected>Regular (400)</option>
+          <option value="500">Medium (500)</option>
+          <option value="600">Semibold (600)</option>
+          <option value="700">Bold (700)</option>
+        </select>
+
+        <label class="four-grid-label" style="text-align:left;font-size:11px;color:var(--text-muted);">Colour</label>
+        <input type="color" id="insp-font-color" value="#1a1917" aria-label="Font colour" />
+      </div>
+
+      <!-- Padding -->
+      <div class="inspector-group">
+        <label>Padding (px)</label>
+        <span class="four-grid-label">Top / Right / Bottom / Left</span>
+        <div class="four-grid">
+          <input type="number" id="insp-padding-top"    min="0" value="0" aria-label="Padding top" />
+          <input type="number" id="insp-padding-right"  min="0" value="0" aria-label="Padding right" />
+          <input type="number" id="insp-padding-bottom" min="0" value="0" aria-label="Padding bottom" />
+          <input type="number" id="insp-padding-left"   min="0" value="0" aria-label="Padding left" />
+        </div>
+      </div>
+
+      <!-- Margin -->
+      <div class="inspector-group">
+        <label>Margin (px)</label>
+        <span class="four-grid-label">Top / Right / Bottom / Left</span>
+        <div class="four-grid">
+          <input type="number" id="insp-margin-top"    value="0" aria-label="Margin top" />
+          <input type="number" id="insp-margin-right"  value="0" aria-label="Margin right" />
+          <input type="number" id="insp-margin-bottom" value="0" aria-label="Margin bottom" />
+          <input type="number" id="insp-margin-left"   value="0" aria-label="Margin left" />
+        </div>
+      </div>
+
+      <!-- Link / href -->
+      <div class="inspector-group" id="insp-href-row" style="display:none">
+        <label for="insp-href">Link URL</label>
+        <input type="text" id="insp-href" placeholder="https://…" aria-label="Element link URL" />
+      </div>
+
+      <!-- Layer order -->
+      <div class="inspector-group">
+        <label for="insp-z-index">Layer order (z-index)</label>
+        <input type="number" id="insp-z-index" min="1" max="100" value="1" aria-label="Element layer order" />
+      </div>
+
     </div>
   </aside>
 
