@@ -1,0 +1,6 @@
+{
+  "css.validate": true,
+  "files.associations": {
+    "export.html": "jinja-html"
+  }
+}
