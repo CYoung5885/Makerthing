@@ -707,9 +707,12 @@ window.addBlock = function addBlock(type) {
 window.deleteBlock = function deleteBlock(el) {
   const type = el.dataset.blockType || 'block';
   if (!confirm('Delete this ' + type + ' block?')) return;
-  const sibling = el.nextElementSibling;
-  if (sibling?.classList.contains('drop-zone')) sibling.remove();
+
+  const prev = el.previousElementSibling;
+  if (prev?.classList.contains('drop-zone')) prev.remove();
+
   el.remove();
+
   selectedBlock = null;
   showEmptyInspector();
   markUnsaved();
@@ -726,28 +729,40 @@ window.duplicateBlock = function duplicateBlock(el) {
   announce(el.dataset.blockType + ' block duplicated');
 };
 
+
+
 window.moveBlock = function moveBlock(el, dir) {
   const blocks = [...canvas.querySelectorAll('.page-block')];
   const idx    = blocks.indexOf(el);
+
   if (dir === 'up' && idx > 0) {
-    const target   = blocks[idx - 1];
-    const elDZ     = el.previousElementSibling;
-    const targetDZ = target.previousElementSibling;
-    if (targetDZ?.classList.contains('drop-zone')) {
-      canvas.insertBefore(el,   targetDZ);
-      canvas.insertBefore(elDZ, target);
-    }
+    const target = blocks[idx - 1];
+    const dz = makeDropZone();
+    canvas.insertBefore(dz, target);
+    canvas.insertBefore(el, dz);
+    cleanDropZones();
     announce('Block moved up');
+
   } else if (dir === 'down' && idx < blocks.length - 1) {
-    const target   = blocks[idx + 1];
-    const afterDZ  = target.nextElementSibling;
-    canvas.insertBefore(el, afterDZ ?? null);
-    const elDZ = el.previousElementSibling;
-    if (elDZ?.classList.contains('drop-zone')) canvas.insertBefore(elDZ, el);
+    const target = blocks[idx + 1];
+    const dz = makeDropZone();
+    const afterTarget = target.nextElementSibling;
+    canvas.insertBefore(el,  afterTarget ?? null);
+    canvas.insertBefore(dz,  afterTarget ?? null);
+    cleanDropZones();
     announce('Block moved down');
   }
+
   markUnsaved();
 };
+
+function cleanDropZones() {
+  [...canvas.children].forEach((child, i, arr) => {
+    if (child.classList.contains('drop-zone')) {
+      if (arr[i + 1]?.classList.contains('drop-zone')) child.remove();
+    }
+  });
+}
 
 window.blockKeydown = function blockKeydown(e, el) {
   if ((e.key === 'Enter' || e.key === ' ') && e.target === el) { e.preventDefault(); selectBlock(el); }
