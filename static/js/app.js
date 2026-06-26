@@ -44,7 +44,7 @@ if (firstPage) {
   await loadPage(firstPage.id);
 } else {
   // No pages yet — create a default one
-  const newPage = await Model.createPage({ title: 'Home' });
+  const newPage = await Model.createPage({ title: 'Export' });
   App.pages.push(newPage);
   App.currentPageId = newPage.id;
   renderPagesList(App.pages);
