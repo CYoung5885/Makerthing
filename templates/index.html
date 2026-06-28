@@ -26,10 +26,6 @@
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Export
     </button>
-    <button class="ghost" onclick="previewPage()" aria-label="Preview page">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-      Preview
-    </button>
     <button class="primary" onclick="savePage()">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>
       Save
@@ -83,19 +79,6 @@
           Divider
         </button>
       </div>
-    </div>
-
-    <!-- Pages -->
-    <div class="sidebar-section" style="display:flex;justify-content:space-between;align-items:center;">
-      <p class="sidebar-section-label" style="margin-bottom:0">Pages</p>
-      <button class="icon-btn ghost" onclick="addPage()" aria-label="Add new page"
-              style="width:24px;height:24px;padding:0;font-size:16px;border:none;color:var(--text-muted)">+</button>
-    </div>
-    <div id="pages-list" role="list" aria-label="Pages">
-      <button class="page-item active" role="listitem" aria-current="page" data-page-id="">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        Home
-      </button>
     </div>
   </nav>
 
