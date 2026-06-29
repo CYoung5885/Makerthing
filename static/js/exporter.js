@@ -56,7 +56,7 @@ window.exportPage = async function exportPage() {
 function clientExport() {
   const pageData = typeof serializePage === 'function'
     ? serializePage()
-    : { title: 'Export', blocks: [] };
+    : { title: 'Home', blocks: [] };
 
   const html = buildStandaloneHtml(pageData);
   const blob = new Blob([html], { type: 'text/html' });
